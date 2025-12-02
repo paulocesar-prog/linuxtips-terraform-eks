@@ -26,4 +26,5 @@ jobs:
       action: ${{ inputs.action }}
       working-directory: ${{ inputs.working-directory }}
     secrets:
+
       AWS_ROLE_TO_ASSUME: ${{ secrets.AWS_ROLE_TO_ASSUME }}
