@@ -18,7 +18,7 @@ terraform {
     }
   }
   backend "s3" {
-    bucket = "linuxtips-curso-actions"
+    bucket = "linuxtips-paulo-curso-actions"
     key    = "stack-eks/terraform.tfstate"
     region = "us-east-1"
   }
