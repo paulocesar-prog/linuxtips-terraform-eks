@@ -14,6 +14,7 @@ resource "aws_eks_addon" "cni" {
   })
 
   depends_on = [
+    aws_eks_node_group.main,
     aws_eks_access_entry.nodes,
     aws_iam_role_policy_attachment.cni,
     aws_iam_role_policy_attachment.nodes,
@@ -33,6 +34,8 @@ resource "aws_eks_addon" "coredns" {
   resolve_conflicts_on_update = "OVERWRITE"
 
   depends_on = [
+    aws_eks_node_group.main,
+    aws_eks_addon.cni,
     aws_eks_access_entry.nodes,
     aws_iam_role_policy_attachment.cni,
     aws_iam_role_policy_attachment.nodes,
@@ -52,6 +55,7 @@ resource "aws_eks_addon" "kubeproxy" {
   resolve_conflicts_on_update = "OVERWRITE"
 
   depends_on = [
+    aws_eks_node_group.main,
     aws_eks_access_entry.nodes,
     aws_iam_role_policy_attachment.cni,
     aws_iam_role_policy_attachment.nodes,
@@ -71,6 +75,7 @@ resource "aws_eks_addon" "pod_identity" {
   resolve_conflicts_on_update = "OVERWRITE"
 
   depends_on = [
+    aws_eks_node_group.main,
     aws_eks_access_entry.nodes,
     aws_iam_role_policy_attachment.cni,
     aws_iam_role_policy_attachment.nodes,
@@ -90,6 +95,8 @@ resource "aws_eks_addon" "efs_csi" {
   resolve_conflicts_on_update = "OVERWRITE"
 
   depends_on = [
+    aws_eks_node_group.main,
+    aws_eks_addon.cni,
     aws_eks_access_entry.nodes,
     aws_iam_role_policy_attachment.cni,
     aws_iam_role_policy_attachment.nodes,
@@ -109,6 +116,8 @@ resource "aws_eks_addon" "s3_csi" {
   resolve_conflicts_on_update = "OVERWRITE"
 
   depends_on = [
+    aws_eks_node_group.main,
+    aws_eks_addon.cni,
     aws_eks_access_entry.nodes,
     aws_iam_role_policy_attachment.cni,
     aws_iam_role_policy_attachment.nodes,
@@ -128,6 +137,8 @@ resource "aws_eks_addon" "ebs_csi" {
   resolve_conflicts_on_update = "OVERWRITE"
 
   depends_on = [
+    aws_eks_node_group.main,
+    aws_eks_addon.cni,
     aws_eks_access_entry.nodes,
     aws_iam_role_policy_attachment.cni,
     aws_iam_role_policy_attachment.nodes,

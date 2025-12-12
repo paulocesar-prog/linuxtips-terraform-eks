@@ -19,7 +19,7 @@ variable "cluster_version" {
 variable "node_instance_types" {
   description = "Tipos de instância para os nodes"
   type        = list(string)
-  default     = ["t3.medium"]
+  default     = ["t3.small"]
 }
 
 variable "node_desired_size" {
@@ -65,9 +65,9 @@ variable "nlb_name" {
 }
 
 variable "certificate_arn" {
-  description = "ARN do certificado SSL para o NLB"
+  description = "ARN do certificado SSL para o NLB (deixe vazio para desabilitar TLS listener)"
   type        = string
-  default     = "arn:aws:acm:us-east-1:760337697893:certificate/d7fc9463-792e-4f15-9d0d-0dfab0789c02"
+  default     = "arn:aws:acm:us-east-1:870461445219:certificate/fa7271a0-406a-4cf5-ba87-a45160c037e4"
 }
 
 variable "argocd_domain" {
@@ -150,7 +150,7 @@ variable "custom_ami" {
 
 variable "nodes_instance_sizes" {
   type = list(string)
-  default = ["t3.medium"]
+  default = ["t3.small"]
 }
 
 variable "ssm_public_subnets" {

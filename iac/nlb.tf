@@ -24,6 +24,7 @@ resource "aws_lb_target_group" "main" {
 }
 
 resource "aws_lb_listener" "main_public" {
+  count             = var.certificate_arn != "" ? 1 : 0
   load_balancer_arn = aws_lb.ingress.arn
   port              = 443
   protocol          = "TLS"
