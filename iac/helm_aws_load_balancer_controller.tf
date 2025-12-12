@@ -40,7 +40,7 @@ resource "helm_release" "alb_ingress_controller" {
   depends_on = [
     aws_eks_cluster.main,
     aws_eks_node_group.main,
-    aws_eks_addon.coredns,
+    aws_eks_addon.cni,
     aws_eks_access_policy_association.github_oidc_role_admin
   ]
 
