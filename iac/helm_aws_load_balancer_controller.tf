@@ -44,5 +44,10 @@ resource "helm_release" "alb_ingress_controller" {
     aws_eks_access_policy_association.github_oidc_role_admin
   ]
 
-  timeout = 600
+  timeout = 1200
+
+  set {
+    name  = "enableServiceMutatorWebhook"
+    value = "false"
+  }
 }

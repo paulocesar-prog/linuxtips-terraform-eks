@@ -36,7 +36,6 @@ resource "aws_eks_addon" "coredns" {
   depends_on = [
     aws_eks_node_group.main,
     aws_eks_addon.cni,
-    helm_release.alb_ingress_controller,
     aws_eks_access_entry.nodes,
     aws_iam_role_policy_attachment.cni,
     aws_iam_role_policy_attachment.nodes,
@@ -98,7 +97,6 @@ resource "aws_eks_addon" "efs_csi" {
   depends_on = [
     aws_eks_node_group.main,
     aws_eks_addon.cni,
-    helm_release.alb_ingress_controller,
     aws_eks_access_entry.nodes,
     aws_iam_role_policy_attachment.cni,
     aws_iam_role_policy_attachment.nodes,
@@ -116,6 +114,12 @@ resource "aws_eks_addon" "s3_csi" {
   addon_version               = var.addon_s3_csi_version
   resolve_conflicts_on_create = "OVERWRITE"
   resolve_conflicts_on_update = "OVERWRITE"
+
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
 
   depends_on = [
     aws_eks_node_group.main,
@@ -141,7 +145,6 @@ resource "aws_eks_addon" "ebs_csi" {
   depends_on = [
     aws_eks_node_group.main,
     aws_eks_addon.cni,
-    helm_release.alb_ingress_controller,
     aws_eks_access_entry.nodes,
     aws_iam_role_policy_attachment.cni,
     aws_iam_role_policy_attachment.nodes,
