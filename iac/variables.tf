@@ -73,7 +73,7 @@ variable "certificate_arn" {
 variable "argocd_domain" {
   description = "Domínio para acesso ao ArgoCD"
   type        = string
-  default     = "argocd.fabiobartoli.com.br"
+  default     = "argocd.sorteado.grupobamaq.com.br"
 }
 
 variable "common_tags" {
@@ -83,7 +83,7 @@ variable "common_tags" {
     Project     = "linuxtips-eks"
     Environment = "production"
     ManagedBy   = "terraform"
-    Owner       = "fabio"
+    Owner       = "paulo"
   }
 }
 
