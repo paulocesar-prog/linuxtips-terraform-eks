@@ -9,7 +9,9 @@ resource "aws_eks_addon" "cni" {
   configuration_values = jsonencode({
     env = {
       ENABLE_PREFIX_DELEGATION = "true"
-      WARM_PREFIX_TARGET       = "1"
+      WARM_PREFIX_TARGET       = "2"
+      MINIMUM_IP_TARGET        = "2"
+      WARM_IP_TARGET            = "2"
     }
   })
 
@@ -116,8 +118,8 @@ resource "aws_eks_addon" "s3_csi" {
   resolve_conflicts_on_update = "OVERWRITE"
 
   timeouts {
-    create = "30m"
-    update = "30m"
+    create = "60m"
+    update = "60m"
     delete = "30m"
   }
 
