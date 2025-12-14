@@ -43,6 +43,26 @@ resource "helm_release" "istiod" {
     value = "false"
   }
 
+  set {
+    name  = "pilot.resources.requests.cpu"
+    value = "100m"
+  }
+
+  set {
+    name  = "pilot.resources.requests.memory"
+    value = "256Mi"
+  }
+
+  set {
+    name  = "pilot.resources.limits.cpu"
+    value = "500m"
+  }
+
+  set {
+    name  = "pilot.resources.limits.memory"
+    value = "512Mi"
+  }
+
   depends_on = [
     helm_release.istio_base,
     aws_eks_cluster.main,

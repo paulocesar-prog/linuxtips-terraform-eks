@@ -41,10 +41,14 @@ resource "helm_release" "alb_ingress_controller" {
     aws_eks_cluster.main,
     aws_eks_node_group.main,
     aws_eks_addon.cni,
+    aws_eks_addon.coredns,
     aws_eks_access_policy_association.github_oidc_role_admin
   ]
 
-  timeout = 1200
+  timeout = 1800
+
+  wait = true
+  wait_for_jobs = false
 
   set {
     name  = "enableServiceMutatorWebhook"

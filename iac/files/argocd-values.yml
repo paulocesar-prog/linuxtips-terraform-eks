@@ -48,10 +48,20 @@ repoServer:
   resources:
     requests:
       cpu: 100m
-      memory: 128Mi
-    limits:
-      cpu: 200m
       memory: 256Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
+  livenessProbe:
+    timeoutSeconds: 30
+    initialDelaySeconds: 60
+    periodSeconds: 30
+    failureThreshold: 5
+  readinessProbe:
+    timeoutSeconds: 30
+    initialDelaySeconds: 30
+    periodSeconds: 10
+    failureThreshold: 3
 
 applicationSet:
   resources:

@@ -118,14 +118,16 @@ resource "aws_eks_addon" "s3_csi" {
   resolve_conflicts_on_update = "OVERWRITE"
 
   timeouts {
-    create = "60m"
-    update = "60m"
+    create = "90m"
+    update = "90m"
     delete = "30m"
   }
 
+  # Aguardar o CNI estar totalmente configurado e os pods do CoreDNS estarem rodando
   depends_on = [
     aws_eks_node_group.main,
     aws_eks_addon.cni,
+    aws_eks_addon.coredns,
     aws_eks_access_entry.nodes,
     aws_iam_role_policy_attachment.cni,
     aws_iam_role_policy_attachment.nodes,
@@ -134,6 +136,10 @@ resource "aws_eks_addon" "s3_csi" {
     aws_iam_role_policy_attachment.cloudwatch,
     aws_iam_role_policy_attachment.ebs_csi
   ]
+
+  lifecycle {
+    ignore_changes = [addon_version]
+  }
 }
 
 resource "aws_eks_addon" "ebs_csi" {

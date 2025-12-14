@@ -19,7 +19,7 @@ variable "cluster_version" {
 variable "node_instance_types" {
   description = "Tipos de instância para os nodes"
   type        = list(string)
-  default     = ["t3.micro"]
+  default     = ["c7i-flex.large"]
 }
 
 variable "node_desired_size" {
@@ -150,7 +150,7 @@ variable "custom_ami" {
 
 variable "nodes_instance_sizes" {
   type = list(string)
-  default = ["t3.micro"]
+  default = ["c7i-flex.large"]
 }
 
 variable "ssm_public_subnets" {
