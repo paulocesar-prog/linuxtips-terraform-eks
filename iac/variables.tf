@@ -65,7 +65,7 @@ variable "nlb_name" {
 }
 
 variable "certificate_arn" {
-  description = "ARN do certificado SSL para o NLB (deixe vazio para desabilitar TLS listener)"
+  description = "ARN do certificado SSL para o NLB"
   type        = string
   default     = "arn:aws:acm:us-east-1:870461445219:certificate/fa7271a0-406a-4cf5-ba87-a45160c037e4"
 }
@@ -73,7 +73,7 @@ variable "certificate_arn" {
 variable "argocd_domain" {
   description = "Domínio para acesso ao ArgoCD"
   type        = string
-  default     = "argocd.sorteado.grupobamaq.com.br"
+  default     = "argocd-sorteador.grupobamaq.com.br"
 }
 
 variable "common_tags" {

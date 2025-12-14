@@ -10,12 +10,8 @@ resource "helm_release" "istio_base" {
 
   depends_on = [
     aws_eks_cluster.main,
-    aws_eks_node_group.main,
-    aws_eks_addon.coredns,
     aws_eks_access_policy_association.github_oidc_role_admin
   ]
-
-  timeout = 600
 }
 
 resource "helm_release" "istiod" {
@@ -43,34 +39,10 @@ resource "helm_release" "istiod" {
     value = "false"
   }
 
-  set {
-    name  = "pilot.resources.requests.cpu"
-    value = "100m"
-  }
-
-  set {
-    name  = "pilot.resources.requests.memory"
-    value = "256Mi"
-  }
-
-  set {
-    name  = "pilot.resources.limits.cpu"
-    value = "500m"
-  }
-
-  set {
-    name  = "pilot.resources.limits.memory"
-    value = "512Mi"
-  }
-
   depends_on = [
     helm_release.istio_base,
     aws_eks_cluster.main,
-    aws_eks_node_group.main,
-    aws_eks_addon.coredns,
     aws_eks_access_policy_association.github_oidc_role_admin,
     helm_release.alb_ingress_controller
   ]
-
-  timeout = 600
 }

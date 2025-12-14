@@ -11,12 +11,10 @@ spec:
   cluster:
     apiServerEndpoint: ${KUBERNETES_ENDPOINT}
     certificateAuthority: ${KUBERNETES_CERTIFICATE_AUTHORITY}
-    cidr: 172.16.0.0/16
+    cidr: 172.20.0.0/16
     name: ${CLUSTER_NAME}
   kubelet:
     config:
       maxPods: 58
-      clusterDNS:
-      - 10.100.0.10
 
 --//--
