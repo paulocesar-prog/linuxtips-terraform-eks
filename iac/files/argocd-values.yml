@@ -1,17 +1,17 @@
 global:
-  domain: argocd.fabiobartoli.com.br
+  domain: argocd-sorteador.grupobamaq.com.br
 
 configs:
   params:
     server.insecure: "true"
 
   cm:
-    url: https://argocd.fabiobartoli.com.br
+    url: https://argocd-sorteador.grupobamaq.com.br
     accounts.linuxtips: apiKey, login
 
   secret:
     extra:
-      accounts.linuxtips.password: "$2b$10$xXbxM1IXskd5BPf4YepSMuvGRvI7pXxvhleiiLin.keUV1jFLhO9G"
+      accounts.linuxtips.password: "$2b$10$xXbxM1IXskd5BPf4YepSMuvGRvI7pXxvhleiiLin.keUV1jFLhO9G" #eolhasoein
       accounts.linuxtips.passwordMtime: "2025-11-07T18:45:00Z"
 
   rbac:

@@ -170,3 +170,15 @@ variable "ssm_vpc" {
   description = "description"
   default     = "/linuxtips/vpc/id"
 }
+
+variable "github_actions_role_arn" {
+  type        = string
+  description = "ARN da IAM Role para GitHub Actions (deve usar o OIDC provider token.actions.githubusercontent.com)"
+  default     = "arn:aws:iam::870461445219:role/OIDCGithubAcessRole"
+}
+
+variable "svc_user_arn" {
+  type        = string
+  description = "ARN do IAM User para acesso ao cluster (opcional, deixe vazio para não criar)"
+  default     = ""
+}

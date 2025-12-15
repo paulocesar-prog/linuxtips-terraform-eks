@@ -6,15 +6,16 @@ resource "aws_eks_access_entry" "nodes" {
 
 resource "aws_eks_access_entry" "github_oidc_role" {
   cluster_name  = aws_eks_cluster.main.id
-  principal_arn = "arn:aws:iam::760337697893:role/OIDCGithubAccessRole"
+  principal_arn = var.github_actions_role_arn
   type          = "STANDARD"
 
   depends_on = [aws_eks_cluster.main]
 }
 
 resource "aws_eks_access_entry" "svc_user" {
+  count        = var.svc_user_arn != "" ? 1 : 0
   cluster_name  = aws_eks_cluster.main.id
-  principal_arn = "arn:aws:iam::760337697893:user/svc_github" #SUBSTITUIR PELO USER REAL
+  principal_arn = var.svc_user_arn
   type          = "STANDARD"
 
   depends_on = [aws_eks_cluster.main]
@@ -34,8 +35,9 @@ resource "aws_eks_access_policy_association" "github_oidc_role_admin" {
 }
 
 resource "aws_eks_access_policy_association" "svc_github_user_admin" {
+  count        = var.svc_user_arn != "" ? 1 : 0
   cluster_name  = aws_eks_cluster.main.id
-  principal_arn = aws_eks_access_entry.svc_user.principal_arn
+  principal_arn = aws_eks_access_entry.svc_user[0].principal_arn
 
   policy_arn = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
 
